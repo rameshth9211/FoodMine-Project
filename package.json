@@ -1,0 +1,14 @@
+{
+  "name": "",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+     "build":"cd frontend && npm run build ",
+     "postbuild": "move frontend\\build backend\\src\\public",
+     "start":"cd backend  && npm start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
