@@ -21,10 +21,13 @@ import {
   import { useNavigate } from 'react-router-dom';
   
   export default function PaypalButtons({ order }) {
+    const clientId = process.env.REACT_APP_PAYPAL_CLIENT_ID || 
+      'AdYIRMQaLMrBX5xbgJTNoXoyZVx4Lm4Uh_AgGbvjhsaMpqJSPK9-vApMbrolxlc00vUnsfPRf-V1Jjwe';
+      
     return (
       <PayPalScriptProvider
         options={{
-          clientId:'AdYIRMQaLMrBX5xbgJTNoXoyZVx4Lm4Uh_AgGbvjhsaMpqJSPK9-vApMbrolxlc00vUnsfPRf-V1Jjwe',
+          clientId: clientId,
      }}
       >
         <Buttons order={order} />

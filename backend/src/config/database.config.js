@@ -14,9 +14,15 @@ export const dbconnect = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    await seedUsers();
-    await seedFoods();
-    console.log("connect successfully---");
+    
+    // Only seed data in development environment
+    if (process.env.NODE_ENV !== 'production') {
+      await seedUsers();
+      await seedFoods();
+      console.log("Database seeded successfully");
+    }
+    
+    console.log("Connected to MongoDB successfully");
   } catch (error) {
     console.log(error);
   }
@@ -29,10 +35,6 @@ async function seedUsers() {
     return;
   }
 
-  // for (let user of sample_users) {
-  //   user.password = await bcrypt.hash(user.password, PASSWORD_HASH_SALT_ROUNDS);
-  //   await UserModel.create(user);
-  // }
   for (let user of sample_users) {
     user.password = await bcrypt.hash(user.password, PASSWORD_HASH_SALT_ROUNDS);
     await UserModel.create(user);
